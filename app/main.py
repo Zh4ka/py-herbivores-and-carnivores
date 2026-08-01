@@ -11,18 +11,14 @@ class Animal:
         Animal.alive.append(self)
 
     def __repr__(self) -> str:
-        result = []
-        for animal in Animal.alive:
-            result.append({"Name" : animal.name,
-                           "Health" : animal.health,
-                           "Hidden" : animal.hidden})
         return (f"{{Name: {self.name}, "
                 f"Health: {self.health}, "
                 f"Hidden: {self.hidden}}}")
 
     @staticmethod
     def del_dead_animal() -> None:
-        for animal in Animal.alive:
+        animals = Animal.alive.copy()
+        for animal in animals:
             if animal.health <= 0:
                 del Animal.alive[Animal.alive.index(animal)]
 
